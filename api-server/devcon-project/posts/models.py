@@ -12,11 +12,13 @@ class Post(models.Model):
 		return '{} - {}'.format(self.id, self.text[:10])
 
 class Like(models.Model):
-	user = models.ManyToManyField(settings.AUTH_USER_MODEL)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	post = models.ManyToManyField(Post)
 
 	def __str__(self):
 		return 'User: {} Post: {}'.format(self.user.id, self.post.id)
+
+
 
 class Comment(models.Model):
 	user = models.ManyToManyField(settings.AUTH_USER_MODEL)
