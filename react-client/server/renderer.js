@@ -11,42 +11,44 @@ import Layout from '../src/components/Layout/Layout';
 import routes from '../src/pages/Routes';
 
 export default ({ clientStats }) => (req, res) => {
-	const context = {};
+  const context = {};
 
-	let promises = [];
-	const store = configureStore();
+  let promises = [];
+  const store = configureStore();
 
-	routes.some(route => {
-		const match = matchPath(req.path, route.path);
+  routes.some(route => {
+    const match = matchPath(req.path, route.path);
 
-		if (match) {
-			route.loadData ? promises.push(store.dispatch(route.loadData())) : null;
-		}
-	});
+    if (match) {
+      route.loadData ? promises.push(store.dispatch(route.loadData())) : null;
+    }
+  });
 
-	const renderApp = () => {
-		return renderToString(
-			<Provider store={store}>
-				<StaticRouter location={req.originalUrl} context={context}>
-					<Layout />
-				</StaticRouter>
-			</Provider>
-		);
-	};
+  const renderApp = () => {
+    return renderToString(
+      <Provider store={store}>
+        <StaticRouter location={req.originalUrl} context={context}>
+          <Layout />
+        </StaticRouter>
+      </Provider>
+    );
+  };
 
-	const template = () => {
-		const app = renderApp();
-		const { js, styles } = flushChunks(clientStats, {
-			chunkNames: flushChunkNames()
-		});
+  const template = () => {
+    const app = renderApp();
+    const { js, styles } = flushChunks(clientStats, {
+      chunkNames: flushChunkNames()
+    });
 
-		return `
+    return `
 			<html lang="en">
 			<head>
 				<meta charset="UTF-8"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 				<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 				<title>Document</title>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900">
+				<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 				${styles}
 			</head>
 			<body>
@@ -59,9 +61,9 @@ export default ({ clientStats }) => (req, res) => {
 			</body>
 			</html>
 		`;
-	};
+  };
 
-	Promise.all(promises).then(() => {
-		res.send(template());
-	});
+  Promise.all(promises).then(() => {
+    res.send(template());
+  });
 };

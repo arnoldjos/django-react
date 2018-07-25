@@ -1,22 +1,26 @@
 import { fetchLanding } from '../store/actions';
 
 const routes = [
-	{
-		path: '/',
-		page: 'Landing',
-		exact: true,
-		loadData: () => fetchLanding()
-	},
-	{
-		path: '/about',
-		exact: true,
-		page: 'About'
-	},
-	{
-		path: '/contact',
-		exact: true,
-		page: 'Contact'
-	}
+  {
+    path: '/',
+    page: 'Landing',
+    exact: true
+  },
+  {
+    path: '/posts',
+    page: 'Posts',
+    loadData: () => fetchLanding()
+  },
+  {
+    path: '/about',
+    exact: true,
+    page: 'About'
+  },
+  {
+    path: '/signup',
+    exact: true,
+    page: 'Signup'
+  }
 ];
 
 export default routes;

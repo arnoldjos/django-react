@@ -1,95 +1,34 @@
 .Landing {
-	width: 100%;
-}
+  &__hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 150vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(rgb(90, 90, 90), 0.8),
+        rgba(#000, 0.8)
+      ),
+      url(https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  }
 
-.Post {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: 20px;
+  &__content {
+    display: inherit;
+    grid-template-columns: 1fr;
+    text-align: center;
+    color: white;
 
-	&__Image {
-		width: 60%;
-		height: 200px;
+    h1 {
+      align-self: center;
+      justify-self: center;
+      font-size: 5rem;
+    }
 
-		img {
-			width: 100%;
-			height: 80%;
-		}
-	}
-}
-
-.Placeholder {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-
-	p {
-		display: none;
-	}
-
-	&:not(:last-child) {
-		margin-bottom: 20px;
-	}
-
-	&__Image {
-		justify-self: center;
-		width: 50%;
-		height: 200px;
-		background-color: #cbcbcb;
-	}
-
-	&__Text {
-		display: flex;
-		height: 20px;
-		width: 80%;
-		margin-top: 10px;
-		background-color: #cbcbcb;
-		align-self: flex-start;
-
-		&::after {
-			display: flex;
-			content: '';
-			height: 20px;
-			width: 80%;
-			margin-top: 30px;
-			align-self: flex-start;
-			background-color: #cbcbcb;
-		}
-	}
-}
-
-.Hidden {
-	display: none;
-}
-
-.fade-appear {
-	opacity: 0;
-	transform: scale(0);
-}
-
-.fade-appear-active {
-	opacity: 1;
-	transform: scale(1);
-	transition: all 0.3s ease-out;
-}
-
-.fade-enter {
-	opacity: 0;
-	transform: scale(0);
-}
-
-.fade-enter-active {
-	opacity: 1;
-	transform: scale(1);
-	transition: all 1s ease-out;
-}
-
-.fade-exit {
-	opacity: 1;
-	transform: scale(1);
-}
-
-.fade-exit-active {
-	opacity: 0;
-	transform: scale(0);
-	transition: all 1s ease-out;
+    p {
+      justify-self: center;
+      font-size: 2rem;
+    }
+  }
 }
