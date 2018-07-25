@@ -1,12 +1,11 @@
 {
-	"name": "webpack-course",
+	"name": "djreact",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"prod": "cross-env NODE_ENV=production node server/main.js",
-		"dev": "cross-env NODE_ENV=development nodemon --watch server --watch config server/main.js",
-		"heroku-postbuild": "npm run build"
+		"dev": "cross-env NODE_ENV=development nodemon --watch server --watch config server/main.js"
 	},
 	"author": "",
 	"license": "ISC",
