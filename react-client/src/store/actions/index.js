@@ -1,0 +1,1 @@
+export { fetchLanding } from './landingActions';

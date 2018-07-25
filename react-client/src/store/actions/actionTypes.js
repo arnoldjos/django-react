@@ -1,0 +1,2 @@
+export const GET_LANDING_DATA = 'GET_LANDING_DATA';
+export const SET_LOADING = 'SET_LOADING';
