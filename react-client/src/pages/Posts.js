@@ -6,7 +6,7 @@ import { fetchLanding } from '../store/actions';
 import '../styles/Posts.scss';
 import Auxil from '../hoc/Auxil';
 
-class Landing extends Component {
+class Post extends Component {
   constructor(props) {
     super(props);
 
@@ -51,7 +51,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="Home">
+      <div className="Post">
         {this.props.data.map(post => {
           let content = (
             <div className="Placeholder" key={post.id}>
@@ -72,7 +72,7 @@ class Landing extends Component {
 
           if (this.state.loadedItems.find(loaded => loaded.id === post.id)) {
             content = (
-              <div className="Post" key={post.id}>
+              <div className="Post__item" key={post.id}>
                 <div className="Post__Image">
                   <img
                     src="https://newevolutiondesigns.com/images/freebies/fantasy-wallpaper-40.jpg"
@@ -101,4 +101,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Landing);
+)(Post);

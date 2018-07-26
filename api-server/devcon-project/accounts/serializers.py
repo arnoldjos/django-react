@@ -18,7 +18,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
  
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-	password2 = serializers.CharField(
+	password = serializers.CharField(
 		style={'input_type': 'password'}, write_only=True)
 	password2 = serializers.CharField(
 		style={'input_type': 'password'}, write_only=True)
@@ -31,6 +31,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 		fields = [
 			'username',
 			'email',
+			'first_name',
+			'last_name',
 			'password',
 			'password2',
 			'token',
@@ -56,6 +58,18 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 			raise serializers.ValidationError('User with this email already exists')
 		return value
 
+	def validate_first_name(self, value):
+		print(len(value))
+		if len(value) == 0 or value is None or value == '':
+			raise serializers.ValidationError('First Name is required')
+		return value
+
+	def validate_last_name(self, value):
+		print(value)
+		if len(value) == 0 or value is None or value == '':
+			raise serializers.ValidationError('Last Name is required')
+		return value
+
 	def validate_username(self, value):
 		qs = User.objects.filter(username__iexact=value)
 		if qs.exists():
@@ -69,10 +83,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 			raise serializers.ValidationError('Passwords must match.')
 		return data
 
-	def create(self, validated_data):
-		user_obj = User(username=validated_data.get(
-			'username'), email=validated_data.get('email'))
-		user_obj.set_password(validated_data.get('password'))
-		user_obj.is_active = False
-		user_obj.save()
-		return user_obj
+	# def create(self, validated_data):
+	# 	user_obj = User(username=validated_data.get(
+	# 		'username'), email=validated_data.get('email'), firstname=validated_data.get('first_name'), last_name=validated_data)
+	# 	user_obj.set_password(validated_data.get('password'))
+	# 	user_obj.is_active = True
+	# 	user_obj.save()
+	# 	return user_obj

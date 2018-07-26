@@ -18,9 +18,6 @@ class RegisterUserView(generics.CreateAPIView):
 	serializer_class = UserRegisterSerializer
 	permission_classes = [AnonPermissionOnly]
 
-	def perform_create(self, serializer):
-		serializer.save(user=self.request.user)
-
 	def get_serializer_context(self, *args, **kwargs):
 		return {'request': self.request}
 

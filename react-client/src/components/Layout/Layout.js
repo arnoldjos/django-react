@@ -6,7 +6,7 @@ import Navbar from '../Navigation/Navbar/Navbar';
 import Footer from '../Navigation/Footer/Footer';
 import Auxil from '../../hoc/Auxil';
 import routes from '../../pages/Routes';
-import Loading from '../UI/Loading';
+import Loading from '../UI/Loading/Loading';
 
 import './Layout.scss';
 
