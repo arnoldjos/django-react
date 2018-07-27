@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { registerUser, clearErrors } from '../store/actions';
 import Button from '../components/UI/Button/Button';
+import InputField from '../components/UI/InputField/InputField';
 import '../styles/Signup.scss';
 
 class Signup extends Component {
@@ -95,102 +96,66 @@ class Signup extends Component {
           <h1 className="Signup__heading">Connect With Other Developers</h1>
           <form noValidate onSubmit={this.onSubmit}>
             <div className="Signup__form-container">
-              <div className="Signup__form-group">
-                {errors.username ? (
-                  <p className="Signup__errors">{errors.username}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="text"
-                  placeholder="User Name"
-                  name="username"
-                  id="username"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="username">
-                  User Name
-                </label>
-              </div>
-              <div className="Signup__form-group">
-                {errors.first_name ? (
-                  <p className="Signup__errors">{errors.first_name}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="text"
-                  placeholder="First Name"
-                  name="first_name"
-                  id="first_name"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="first_name">
-                  First Name
-                </label>
-              </div>
-              <div className="Signup__form-group">
-                {errors.last_name ? (
-                  <p className="Signup__errors">{errors.last_name}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="text"
-                  placeholder="Last Name"
-                  name="last_name"
-                  id="last_name"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="last_name">
-                  Last Name
-                </label>
-              </div>
-              <div className="Signup__form-group">
-                {errors.email ? (
-                  <p className="Signup__errors">{errors.email}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="email"
-                  placeholder="email@sample.com"
-                  name="email"
-                  id="email"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="email">
-                  Email
-                </label>
-              </div>
-              <div className="Signup__form-group">
-                {errors.password ? (
-                  <p className="Signup__errors">{errors.password}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  id="password"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="password">
-                  Password
-                </label>
-              </div>
-              <div className="Signup__form-group">
-                {errors.password2 ? (
-                  <p className="Signup__errors">{errors.password2}</p>
-                ) : null}
-                <input
-                  className="Signup__input"
-                  type="password"
-                  placeholder="Confirm Password"
-                  name="password2"
-                  id="password2"
-                  onChange={this.onChange}
-                />
-                <label className="Signup__label" htmlFor="password2">
-                  Confirm Password
-                </label>
-              </div>
+              <InputField
+                className="Signup__input"
+                error={errors.username ? errors.username : null}
+                type="text"
+                id="username"
+                name="username"
+                onChange={this.onChange}
+                placeholder="User Name"
+                label="User Name"
+              />
+              <InputField
+                className="Signup__input"
+                error={errors.first_name ? errors.first_name : null}
+                type="text"
+                id="first_name"
+                name="first_name"
+                onChange={this.onChange}
+                placeholder="First Name"
+                label="First Name"
+              />
+              <InputField
+                className="Signup__input"
+                error={errors.last_name ? errors.last_name : null}
+                type="text"
+                id="last_name"
+                name="last_name"
+                onChange={this.onChange}
+                placeholder="Last Name"
+                label="Last Name"
+              />
+              <InputField
+                className="Signup__input"
+                error={errors.email ? errors.email : null}
+                type="email"
+                id="email"
+                name="email"
+                onChange={this.onChange}
+                placeholder="email@sample.com"
+                label="Email"
+              />
+              <InputField
+                className="Signup__input"
+                error={errors.password ? errors.password : null}
+                type="password"
+                id="password"
+                name="password"
+                onChange={this.onChange}
+                placeholder="Password"
+                label="Password"
+              />
+              <InputField
+                className="Signup__input"
+                error={errors.password2 ? errors.password2 : null}
+                type="password"
+                id="password2"
+                name="password2"
+                onChange={this.onChange}
+                placeholder="Confirm Password"
+                label="Confirm Password"
+              />
               <div className="Signup__submit-button">
                 <Button type="submit" />
               </div>
