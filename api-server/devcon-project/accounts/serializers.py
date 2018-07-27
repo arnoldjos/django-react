@@ -3,6 +3,7 @@ from rest_framework_jwt.settings import api_settings
 from django.utils import timezone
 import datetime
 
+from .settings.helpers import letters_and_num_only, letters_only
 from .models import User
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -53,19 +54,24 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 		return "Thank you for registering. Please verify your email before continuing."
 
 	def validate_email(self, value):
+		if value == '':
+			raise serializers.ValidationError('This field may not be empty')
 		qs = User.objects.filter(email__iexact=value)
 		if qs.exists():
 			raise serializers.ValidationError('User with this email already exists')
+			
 		return value
 
 	def validate_first_name(self, value):
-		print(len(value))
+		if not letters_only(value):
+			raise serializers.ValidationError('Only letters are allowed')
 		if len(value) == 0 or value is None or value == '':
 			raise serializers.ValidationError('First Name is required')
 		return value
 
 	def validate_last_name(self, value):
-		print(value)
+		if not letters_only(value):
+			raise serializers.ValidationError('Only letters are allowed')
 		if len(value) == 0 or value is None or value == '':
 			raise serializers.ValidationError('Last Name is required')
 		return value

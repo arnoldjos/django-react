@@ -13,11 +13,11 @@ class Signup extends Component {
 
     this.state = {
       username: '',
-      firstname: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
-      errors: ''
+      errors: {}
     };
   }
 
@@ -28,9 +28,14 @@ class Signup extends Component {
   }
 
   // static getDerivedStateFromProps(props, state) {
-  //   if (props.errors !== state.errors && props.errors) {
-  //     this.setState({ errors: 'asd' });
+  //   if (props.errors !== state.errors) {
+  //     state = {
+  //       ...state,
+  //       errors: state.errors
+  //     };
+  //     return state;
   //   }
+  //   return state;
   // }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -43,8 +48,8 @@ class Signup extends Component {
 
     const newUser = {
       username: this.state.username,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
@@ -58,7 +63,31 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this.state.errors);
+    let errors = {};
+
+    console.log(Object.keys(this.state.errors).length);
+    if (Object.keys(this.state.errors).length > 0) {
+      this.state.errors.username
+        ? (errors.username = this.state.errors.username[0])
+        : null;
+      this.state.errors.first_name
+        ? (errors.first_name = this.state.errors.first_name[0])
+        : null;
+      this.state.errors.last_name
+        ? (errors.last_name = this.state.errors.last_name[0])
+        : null;
+      this.state.errors.email
+        ? (errors.email = this.state.errors.email[0])
+        : null;
+      this.state.errors.password
+        ? (errors.password = this.state.errors.password[0])
+        : this.state.errors.non_field_errors
+          ? (errors.password = this.state.errors.non_field_errors[0])
+          : null;
+      this.state.errors.password2
+        ? (errors.password2 = this.state.errors.password2[0])
+        : null;
+    }
 
     return (
       <div className="Signup">
@@ -67,6 +96,9 @@ class Signup extends Component {
           <form noValidate onSubmit={this.onSubmit}>
             <div className="Signup__form-container">
               <div className="Signup__form-group">
+                {errors.username ? (
+                  <p className="Signup__errors">{errors.username}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="text"
@@ -80,32 +112,41 @@ class Signup extends Component {
                 </label>
               </div>
               <div className="Signup__form-group">
+                {errors.first_name ? (
+                  <p className="Signup__errors">{errors.first_name}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="text"
                   placeholder="First Name"
-                  name="firstname"
-                  id="firstname"
+                  name="first_name"
+                  id="first_name"
                   onChange={this.onChange}
                 />
-                <label className="Signup__label" htmlFor="firstname">
+                <label className="Signup__label" htmlFor="first_name">
                   First Name
                 </label>
               </div>
               <div className="Signup__form-group">
+                {errors.last_name ? (
+                  <p className="Signup__errors">{errors.last_name}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="text"
                   placeholder="Last Name"
-                  name="lastname"
-                  id="lastname"
+                  name="last_name"
+                  id="last_name"
                   onChange={this.onChange}
                 />
-                <label className="Signup__label" htmlFor="lastname">
+                <label className="Signup__label" htmlFor="last_name">
                   Last Name
                 </label>
               </div>
               <div className="Signup__form-group">
+                {errors.email ? (
+                  <p className="Signup__errors">{errors.email}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="email"
@@ -119,6 +160,9 @@ class Signup extends Component {
                 </label>
               </div>
               <div className="Signup__form-group">
+                {errors.password ? (
+                  <p className="Signup__errors">{errors.password}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="password"
@@ -132,6 +176,9 @@ class Signup extends Component {
                 </label>
               </div>
               <div className="Signup__form-group">
+                {errors.password2 ? (
+                  <p className="Signup__errors">{errors.password2}</p>
+                ) : null}
                 <input
                   className="Signup__input"
                   type="password"
