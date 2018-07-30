@@ -17,9 +17,19 @@ const routes = [
     page: 'About'
   },
   {
+    path: '/dashboard',
+    exact: true,
+    page: 'Dashboard'
+  },
+  {
     path: '/signup',
     exact: true,
     page: 'Signup'
+  },
+  {
+    path: '/login',
+    exact: true,
+    page: 'Login'
   }
 ];
 

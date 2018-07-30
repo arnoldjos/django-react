@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { registerUser, clearErrors } from '../store/actions';
@@ -116,7 +116,7 @@ class Signup extends Component {
       password2: this.state.form.password2.value
     };
 
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
   };
 
   onChange = e => {
@@ -184,7 +184,7 @@ class Signup extends Component {
               })}
 
               <div className="Signup__submit-button">
-                <Button type="submit" />
+                <Button type="submit" defaultValue="Submit" />
               </div>
             </div>
           </form>
@@ -195,7 +195,8 @@ class Signup extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  registerUser: userData => dispatch(registerUser(userData)),
+  registerUser: (userData, history) =>
+    dispatch(registerUser(userData, history)),
   clearErrors: () => dispatch(clearErrors())
 });
 
@@ -209,4 +210,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Signup);
+)(withRouter(Signup));

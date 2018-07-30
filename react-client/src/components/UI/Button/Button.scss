@@ -2,11 +2,12 @@ $color-black: #000;
 $color-primary: #003366;
 $color-white: #fff;
 
-.btn,
-input[type='submit'] {
+.btn {
   &,
   &:link,
   &:visited {
+    color: $color-white;
+    background-color: $color-primary;
     text-transform: uppercase;
     text-decoration: none;
     padding: 1.5rem 4rem;
@@ -38,13 +39,13 @@ input[type='submit'] {
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
 
-  &-primary {
-    background-color: $color-primary;
-    color: $color-white;
-  }
+  // &-primary {
+  //   background-color: $color-primary;
+  //   color: $color-white;
+  // }
 }
 
-input[type='submit'] {
-  background-color: $color-primary;
-  color: $color-white;
-}
+// input[type='submit'] {
+//   background-color: $color-primary;
+//   color: $color-white;
+// }

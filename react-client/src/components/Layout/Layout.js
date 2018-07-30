@@ -1,14 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import universal from 'react-universal-component';
+import jwt_decode from 'jwt-decode';
 
 import Navbar from '../Navigation/Navbar/Navbar';
 import Footer from '../Navigation/Footer/Footer';
 import Auxil from '../../hoc/Auxil';
 import routes from '../../pages/Routes';
 import Loading from '../UI/Loading/Loading';
-
 import './Layout.scss';
+import { setCurrentUser, logoutUser } from '../../store/actions';
+import setAuthToken from '../../utils/setAuthToken';
 
 const UniversalComponent = universal(
   props => import(`../../pages/${props.page}`),

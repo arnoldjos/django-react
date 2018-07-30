@@ -13,6 +13,7 @@
   &__menu {
     display: flex;
     transition: all 0.2s ease-in-out;
+    justify-content: flex-end;
   }
 
   &__checkbox {

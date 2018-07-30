@@ -2,4 +2,9 @@ export { fetchLanding } from './landingActions';
 
 export { getErrors, clearErrors } from './errorActions';
 
-export { registerUser } from './authActions';
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  setCurrentUser
+} from './authActions';
