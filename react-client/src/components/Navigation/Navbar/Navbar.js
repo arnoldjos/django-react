@@ -48,7 +48,7 @@ class Navbar extends Component {
         </div>
         <div className="nav__menu-item">
           <Link to="/signup">Sign Up</Link>
-        </div>
+        </div> 
         <div className="nav__menu-item">
           <Link to="/login">Login</Link>
         </div>
